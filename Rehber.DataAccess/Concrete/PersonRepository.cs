@@ -51,9 +51,18 @@ namespace Rehber.DataAccess.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<List<PersonDto>> GetAllPerson()
+        public async Task<List<PersonDto>> GetAllPerson()
         {
-            throw new NotImplementedException();
+            var getAllPerson = await _dbContext.Persons.ToListAsync();
+            if(getAllPerson != null)
+            {
+                var personList = _mapper.Map<List<PersonDto>>(getAllPerson);
+                return personList;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<PersonDto> GetPersonByUID(string personUID)

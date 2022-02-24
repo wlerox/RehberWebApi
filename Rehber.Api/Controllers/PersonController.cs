@@ -46,5 +46,18 @@ namespace Rehber.API.Controllers
             }
             return NotFound();
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllPerson()
+        {
+            var personList = await _personService.GetAllPerson();
+            if (personList != null)
+            {
+                return Ok(personList);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

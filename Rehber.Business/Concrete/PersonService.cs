@@ -28,9 +28,10 @@ namespace Rehber.Business.Concrete
             await _personRepository.DeletePerson(personUID);
         }
 
-        public Task<List<PersonDto>> GetAllPerson()
+        public async Task<List<PersonDto>> GetAllPerson()
         {
-            throw new NotImplementedException();
+            var personList = await _personRepository.GetAllPerson();
+            return personList;
         }
 
         public async Task<PersonDto> GetPersonByUID(string personUID)
