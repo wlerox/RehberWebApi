@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Rehber.DataAccess;
 using Rehber.DataAccess.Abstract;
 using Rehber.DataAccess.Concrete;
@@ -27,6 +28,7 @@ namespace Rehber.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
             services.AddScoped<IPersonRepository, PersonRepository>();
             //DB connection
             services.AddDbContext<PersonDbContext>(options =>
@@ -36,6 +38,17 @@ namespace Rehber.Api
             });
             //Add mapper
             services.AddAutoMapper(typeof(AppProfile));
+
+            //Swagger
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Telefon Rehber Api",
+                    Version = "v1"
+                });
+
+            });
 
             
             
@@ -51,14 +64,18 @@ namespace Rehber.Api
 
             personDbContext.Database.EnsureCreated();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(x=> { x.SwaggerEndpoint("/swagger/v1/swagger.json", "Rehber API"); });
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                endpoints.MapControllers();
+                /*endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
-                });
+                });*/
             });
         }
     }
