@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rehber.DataAccess;
+using Rehber.DataAccess.Abstract;
+using Rehber.DataAccess.Concrete;
 using Rehber.DataAccess.Mapper;
 using System;
 using System.Collections.Generic;
@@ -25,23 +27,29 @@ namespace Rehber.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IPersonRepository, PersonRepository>();
             //DB connection
             services.AddDbContext<PersonDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("Database"),
+                options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnect"),
                 providerOptions => providerOptions.EnableRetryOnFailure());
             });
             //Add mapper
             services.AddAutoMapper(typeof(AppProfile));
+
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PersonDbContext personDbContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            personDbContext.Database.EnsureCreated();
 
             app.UseRouting();
 
