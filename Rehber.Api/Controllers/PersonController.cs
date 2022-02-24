@@ -35,5 +35,16 @@ namespace Rehber.API.Controllers
             }
             return NotFound();
         }
+
+        [HttpDelete("{personUID}")]
+        public async Task<IActionResult> DeletePerson(string personUID)
+        {
+            if (await _personService.GetPersonByUID(personUID) != null)
+            {
+                await _personService.DeletePerson(personUID);
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

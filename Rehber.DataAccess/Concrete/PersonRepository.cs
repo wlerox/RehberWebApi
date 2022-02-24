@@ -44,7 +44,6 @@ namespace Rehber.DataAccess.Concrete
                 _dbContext.Persons.Remove(person);
                 await _dbContext.SaveChangesAsync();
             }
-            throw new NotImplementedException();
         }
 
         public Task DeletePersonContactInfo(int contactInfoId)

@@ -23,9 +23,9 @@ namespace Rehber.Business.Concrete
             return newPerson;
         }
 
-        public Task DeletePerson(string personUID)
+        public async Task DeletePerson(string personUID)
         {
-            throw new NotImplementedException();
+            await _personRepository.DeletePerson(personUID);
         }
 
         public Task<List<PersonDto>> GetAllPerson()
@@ -33,9 +33,18 @@ namespace Rehber.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<PersonDto> GetPersonByUID(string personUID)
+        public async Task<PersonDto> GetPersonByUID(string personUID)
         {
-            throw new NotImplementedException();
+            var getPerson = await _personRepository.GetPersonByUID(personUID);
+            if (getPerson != null)
+            {
+                return getPerson;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         public Task<PersonDto> GetPersonDetail(string personUID)
