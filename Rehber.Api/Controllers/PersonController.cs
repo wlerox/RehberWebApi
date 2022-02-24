@@ -24,5 +24,16 @@ namespace Rehber.API.Controllers
             var newPerson = await _personService.CreatePerson(person);
             return Ok(newPerson);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePerson([FromBody] PersonDto person)
+        {
+            var updatePerson = await _personService.UpdatePerson(person);
+            if(updatePerson!= null)
+            {
+                return Ok(updatePerson);
+            }
+            return NotFound();
+        }
     }
 }

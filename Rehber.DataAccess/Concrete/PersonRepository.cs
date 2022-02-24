@@ -59,7 +59,7 @@ namespace Rehber.DataAccess.Concrete
 
         public async Task<PersonDto> GetPersonByUID(string personUID)
         {
-            var getPerson = await _dbContext.Persons.FirstOrDefaultAsync(p=>p.UID.Equals(personUID));
+            var getPerson = await _dbContext.Persons.AsNoTracking().FirstOrDefaultAsync(p=>p.UID.Equals(personUID));
             if (getPerson != null)
             {
                 var person = _mapper.Map<PersonDto>(getPerson);
@@ -69,7 +69,6 @@ namespace Rehber.DataAccess.Concrete
             {
                 return null;
             }
-            throw new NotImplementedException();
         }
 
         public Task<PersonDto> GetPersonDetail(string personUID)
@@ -77,9 +76,20 @@ namespace Rehber.DataAccess.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<PersonDto> UpdatePerson(PersonDto person)
+        public async Task<PersonDto> UpdatePerson(PersonDto person)
         {
-            throw new NotImplementedException();
+            var uPerson = await GetPersonByUID(person.UID);
+            if (uPerson != null)
+            {
+                var updatePerson = _mapper.Map<Person>(person);
+                _dbContext.Persons.Update(updatePerson);
+                await _dbContext.SaveChangesAsync();
+                return _mapper.Map<PersonDto>(updatePerson);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

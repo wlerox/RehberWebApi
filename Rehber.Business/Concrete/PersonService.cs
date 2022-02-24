@@ -43,9 +43,10 @@ namespace Rehber.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<PersonDto> UpdatePerson(PersonDto person)
+        public async Task<PersonDto> UpdatePerson(PersonDto person)
         {
-            throw new NotImplementedException();
+            var updatePerson = await _personRepository.UpdatePerson(person);
+            return updatePerson;
         }
     }
 }
