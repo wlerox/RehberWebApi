@@ -17,4 +17,9 @@
     <ProjectReference Include="..\Rehber.Entities\Rehber.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+    <Folder Include="Concrete\" />
+  </ItemGroup>
+
 </Project>
