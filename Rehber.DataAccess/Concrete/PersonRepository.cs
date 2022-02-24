@@ -27,7 +27,7 @@ namespace Rehber.DataAccess.Concrete
             personCreate.UID = Guid.NewGuid().ToString();
             _dbContext.Persons.Add(personCreate);
             await _dbContext.SaveChangesAsync();
-            throw new NotImplementedException();
+            return _mapper.Map<PersonDto>(personCreate);
         }
 
         public Task<ContactInfoDto> CreatePersonInfo(ContactInfoDto personInfo)
