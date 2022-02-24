@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rehber.DataAccess;
+using Rehber.DataAccess.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace Rehber.Api
                 options.UseSqlServer(Configuration.GetConnectionString("Database"),
                 providerOptions => providerOptions.EnableRetryOnFailure());
             });
+            //Add mapper
+            services.AddAutoMapper(typeof(AppProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
