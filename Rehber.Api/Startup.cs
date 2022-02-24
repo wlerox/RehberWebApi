@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Rehber.Business.Abstract;
+using Rehber.Business.Concrete;
 using Rehber.DataAccess;
 using Rehber.DataAccess.Abstract;
 using Rehber.DataAccess.Concrete;
@@ -30,6 +32,7 @@ namespace Rehber.Api
         {
             services.AddControllers();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPersonService, PersonService>();
             //DB connection
             services.AddDbContext<PersonDbContext>(options =>
             {
