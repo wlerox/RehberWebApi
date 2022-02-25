@@ -17,6 +17,12 @@ namespace Rehber.Business.Concrete
             _personRepository = personRepository;
         }
 
+        public async Task<ContactInfoSetDto> AddPersonContact(ContactInfoSetDto contactInfo)
+        {
+            var addPersonContact = await _personRepository.AddPersonContact(contactInfo);
+            return addPersonContact;
+        }
+
         public async Task<PersonDto> CreatePerson(PersonSetDto person)
         {
             var newPerson = await _personRepository.CreateNewPerson(person);
@@ -26,6 +32,11 @@ namespace Rehber.Business.Concrete
         public async Task DeletePerson(string personUID)
         {
             await _personRepository.DeletePerson(personUID);
+        }
+
+        public async Task DeletePersonContact(string personUID, int contactId)
+        {
+            await _personRepository.DeletePersonContact(personUID, contactId);
         }
 
         public async Task<List<PersonDto>> GetAllPerson()
@@ -52,6 +63,12 @@ namespace Rehber.Business.Concrete
         {
             var personDetail = await _personRepository.GetPersonDetail(personUID);
             return personDetail;
+        }
+
+        public async Task<bool> IsPersonContact(string personUID, int contactId)
+        {
+            var isPerconContact = await _personRepository.IsPersonContact(personUID, contactId);
+            return isPerconContact;
         }
 
         public async Task<PersonDto> UpdatePerson(PersonDto person)

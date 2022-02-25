@@ -21,6 +21,24 @@ namespace Rehber.DataAccess.Concrete
             _mapper = mapper;
         }
 
+        public async Task<ContactInfoSetDto> AddPersonContact(ContactInfoSetDto personInfo)
+        {
+            var person = await GetPersonByUID(personInfo.PersonUID);
+            var infoType = await _dbContext.InfoTypes.AsNoTracking().FirstOrDefaultAsync(t => t.InfoTypeID.Equals(personInfo.InfoTypeID));
+            if(person!=null && infoType != null)
+            {
+                var addPersonContact = _mapper.Map<ContactInfo>(personInfo);
+                _dbContext.ContactInfos.Add(addPersonContact);
+                await _dbContext.SaveChangesAsync();
+                return _mapper.Map<ContactInfoSetDto>(addPersonContact);
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+
         public async Task<PersonDto> CreateNewPerson(PersonSetDto person)
         {
             var personCreate = _mapper.Map<Person>(person);
@@ -28,11 +46,6 @@ namespace Rehber.DataAccess.Concrete
             _dbContext.Persons.Add(personCreate);
             await _dbContext.SaveChangesAsync();
             return _mapper.Map<PersonDto>(personCreate);
-        }
-
-        public Task<ContactInfoDto> CreatePersonInfo(ContactInfoDto personInfo)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task DeletePerson(string personUID)
@@ -46,9 +59,12 @@ namespace Rehber.DataAccess.Concrete
             }
         }
 
-        public Task DeletePersonContactInfo(int contactInfoId)
+        public async Task DeletePersonContact(string personUID, int contactId)
         {
-            throw new NotImplementedException();
+            var contact = await _dbContext.ContactInfos.FirstOrDefaultAsync(p =>p.PersonUID.Equals(personUID) && p.ContactInfoID.Equals(contactId));
+            var deleteContact = _mapper.Map<ContactInfo>(contact);
+            _dbContext.ContactInfos.Remove(deleteContact);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<List<PersonDto>> GetAllPerson()
@@ -94,6 +110,20 @@ namespace Rehber.DataAccess.Concrete
             else
             {
                 return null;
+            }
+
+        }
+
+        public async Task<bool> IsPersonContact(string personUID, int contactId)
+        {
+            var contact = await _dbContext.ContactInfos.FirstOrDefaultAsync(p => p.PersonUID.Equals(personUID) && p.ContactInfoID.Equals(contactId));
+            if (contact != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
         }

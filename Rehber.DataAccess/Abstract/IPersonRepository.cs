@@ -14,7 +14,8 @@ namespace Rehber.DataAccess.Abstract
         Task<PersonDto> GetPersonByUID(string personUID);
         Task<List<PersonDto>> GetAllPerson();
         Task<PersonGetDto> GetPersonDetail(String personUID);
-        Task<ContactInfoDto> CreatePersonInfo(ContactInfoDto personInfo);
-        Task DeletePersonContactInfo(int contactInfoId);
+        Task<ContactInfoSetDto> AddPersonContact(ContactInfoSetDto personInfo);
+        Task DeletePersonContact(string personUID,int contactId);
+        Task<Boolean> IsPersonContact(string personUID, int contactId);
     }
 }

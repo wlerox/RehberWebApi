@@ -14,5 +14,8 @@ namespace Rehber.Business.Abstract
         Task<PersonDto> GetPersonByUID(string personUID);
         Task<List<PersonDto>> GetAllPerson();
         Task<PersonGetDto> GetPersonDetail(String personUID);
+        Task<ContactInfoSetDto> AddPersonContact(ContactInfoSetDto contactInfo);
+        Task DeletePersonContact(string personUID, int contactId);
+        Task<Boolean> IsPersonContact(string personUID, int contactId);
     }
 }

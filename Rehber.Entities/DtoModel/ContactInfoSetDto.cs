@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Rehber.Entities.DtoModel
 {
-    public class ContactInfoDto
+    public class ContactInfoSetDto
     {
         [Required]
         public int InfoTypeID { get; set; }

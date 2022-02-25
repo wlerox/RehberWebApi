@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rehber.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class PersonController: ControllerBase
     {
@@ -24,6 +24,17 @@ namespace Rehber.API.Controllers
             var newPerson = await _personService.CreatePerson(person);
             return Ok(newPerson);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPersonContact([FromBody] ContactInfoSetDto personContact)
+        {
+            var addPersonContact = await _personService.AddPersonContact(personContact);
+            
+            return Ok(addPersonContact);
+            
+            
+        }
+
 
         [HttpPut]
         public async Task<IActionResult> UpdatePerson([FromBody] PersonDto person)
@@ -42,6 +53,16 @@ namespace Rehber.API.Controllers
             if (await _personService.GetPersonByUID(personUID) != null)
             {
                 await _personService.DeletePerson(personUID);
+                return Ok();
+            }
+            return NotFound();
+        }
+        [HttpDelete("{personUID}/{contactId}")]
+        public async Task<IActionResult> DeleteContact(string personUID,int contactId)
+        {
+            if (await _personService.IsPersonContact(personUID,contactId) != false)
+            {
+                await _personService.DeletePersonContact(personUID,contactId);
                 return Ok();
             }
             return NotFound();
