@@ -59,5 +59,18 @@ namespace Rehber.API.Controllers
                 return NotFound();
             }
         }
+        [HttpGet("{personUID}")]
+        public async Task<IActionResult> GetPersonWithDetail(string personUID)
+        {
+            var personDetail = await _personService.GetPersonDetail(personUID);
+            if (personDetail != null)
+            {
+                return Ok(personDetail);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

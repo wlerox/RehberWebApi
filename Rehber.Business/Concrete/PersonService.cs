@@ -48,9 +48,10 @@ namespace Rehber.Business.Concrete
             
         }
 
-        public Task<PersonDto> GetPersonDetail(string personUID)
+        public async Task<PersonGetDto> GetPersonDetail(string personUID)
         {
-            throw new NotImplementedException();
+            var personDetail = await _personRepository.GetPersonDetail(personUID);
+            return personDetail;
         }
 
         public async Task<PersonDto> UpdatePerson(PersonDto person)

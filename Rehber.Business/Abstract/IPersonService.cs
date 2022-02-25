@@ -13,6 +13,6 @@ namespace Rehber.Business.Abstract
         Task DeletePerson(string personUID);
         Task<PersonDto> GetPersonByUID(string personUID);
         Task<List<PersonDto>> GetAllPerson();
-        Task<PersonDto> GetPersonDetail(String personUID);
+        Task<PersonGetDto> GetPersonDetail(String personUID);
     }
 }

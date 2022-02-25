@@ -79,9 +79,23 @@ namespace Rehber.DataAccess.Concrete
             }
         }
 
-        public Task<PersonDto> GetPersonDetail(string personUID)
+        public async Task<PersonGetDto> GetPersonDetail(string personUID)
         {
-            throw new NotImplementedException();
+            //var personDetail = await GetPersonByUID(personUID);
+            var personDetail = await _dbContext.Persons.Include(a => a.ContactInfos)
+                                            .ThenInclude(g => g.InfoType)
+                                            .AsNoTracking()
+                                            .FirstOrDefaultAsync(x => x.UID.Equals(personUID));
+            if (personDetail != null)
+            {
+                var person = _mapper.Map<PersonGetDto>(personDetail);
+                return person;
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public async Task<PersonDto> UpdatePerson(PersonDto person)

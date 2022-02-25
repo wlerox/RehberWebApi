@@ -11,5 +11,6 @@ namespace Rehber.Entities.DtoModel
         public int InfoTypeID { get; set; }
         [Required]
         public string InfoTypeName { get; set; }
+        //public ContactInfoGetDto ContactInfo { get; set; }
     }
 }

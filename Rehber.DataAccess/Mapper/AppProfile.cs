@@ -29,6 +29,9 @@ namespace Rehber.DataAccess.Mapper
             CreateMap<ContactInfo, ContactInfoDto>().ReverseMap();
             CreateMap<ContactInfoDto, ContactInfo>().ReverseMap();
 
+            CreateMap<ContactInfo, ContactInfoGetDto>().ReverseMap();
+            CreateMap<ContactInfoGetDto, ContactInfo>().ReverseMap();
+
         }
     }
 }

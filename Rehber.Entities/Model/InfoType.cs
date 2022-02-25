@@ -10,6 +10,6 @@ namespace Rehber.Entities.Model
         
         public int InfoTypeID { get; set; }
         public string InfoTypeName { get; set; }
-        public ContactInfo ContactInfo { get; set; }
+        public virtual ICollection<ContactInfo> ContactInfo { get; set; }
     }
 }
