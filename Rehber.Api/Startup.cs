@@ -33,6 +33,7 @@ namespace Rehber.Api
             services.AddControllers();
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<ICacheProcesses, CacheProcesses>();
             //DB connection
             services.AddDbContext<PersonDbContext>(options =>
             {
