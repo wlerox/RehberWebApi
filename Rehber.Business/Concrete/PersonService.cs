@@ -45,7 +45,7 @@ namespace Rehber.Business.Concrete
             return personList;
         }
 
-        public async Task<PersonDto> GetPersonByUID(string personUID)
+        public async Task<PersonGetDto> GetPersonByUID(string personUID)
         {
             var getPerson = await _personRepository.GetPersonByUID(personUID);
             if (getPerson != null)

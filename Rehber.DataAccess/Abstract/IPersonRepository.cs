@@ -12,7 +12,7 @@ namespace Rehber.DataAccess.Abstract
         Task<PersonDto> CreateNewPerson (PersonSetDto person);
         Task<PersonDto> UpdatePerson (PersonDto person);
         Task DeletePerson(string personUID);
-        Task<PersonDto> GetPersonByUID(string personUID);
+        Task<PersonGetDto> GetPersonByUID(string personUID);
         Task<List<PersonDto>> GetAllPerson();
         Task<PersonGetDto> GetPersonDetail(String personUID);
         Task<ContactInfoSetDto> AddPersonContact(ContactInfoSetDto personInfo);

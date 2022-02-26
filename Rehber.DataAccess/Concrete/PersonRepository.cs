@@ -55,7 +55,12 @@ namespace Rehber.DataAccess.Concrete
             if (deletePerson != null)
             {
                 var person = _mapper.Map<Person>(deletePerson);
+                if (person.ContactInfos != null)
+                {
+                    _dbContext.ContactInfos.RemoveRange(person.ContactInfos);
+                }
                 _dbContext.Persons.Remove(person);
+                
                 await _dbContext.SaveChangesAsync();
             }
         }
@@ -82,12 +87,12 @@ namespace Rehber.DataAccess.Concrete
             }
         }
 
-        public async Task<PersonDto> GetPersonByUID(string personUID)
+        public async Task<PersonGetDto> GetPersonByUID(string personUID)
         {
-            var getPerson = await _dbContext.Persons.AsNoTracking().FirstOrDefaultAsync(p=>p.UID.Equals(personUID));
+            var getPerson = await _dbContext.Persons.Include(c=>c.ContactInfos).AsNoTracking().FirstOrDefaultAsync(p=>p.UID.Equals(personUID));
             if (getPerson != null)
             {
-                var person = _mapper.Map<PersonDto>(getPerson);
+                var person = _mapper.Map<PersonGetDto>(getPerson);
                 return person;
             }
             else
