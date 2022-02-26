@@ -5,6 +5,7 @@ using Rehber.Entities.DtoModel;
 using Rehber.Entities.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -117,13 +118,33 @@ namespace Rehber.DataAccess.Concrete
         public async Task<bool> IsPersonContact(string personUID, int contactId)
         {
             var contact = await _dbContext.ContactInfos.FirstOrDefaultAsync(p => p.PersonUID.Equals(personUID) && p.ContactInfoID.Equals(contactId));
-            if (contact != null)
-            {
+            if (contact != null) {
                 return true;
             }
             else
             {
+                //var a = await _dbContext.Persons.Include(person => person.ContactInfos.Where(c =>c.InfoTypeID == 3).GroupBy(g => g.InfoContent).ToList());
+
                 return false;
+            }
+
+        }
+
+        public async Task PersonStatistics()
+        {
+            
+            var a = await _dbContext.ContactInfos.Where(t => t.InfoTypeID == 1 && t.InfoTypeID==3 )
+                                            .GroupBy(p => new { p.InfoContent })
+                                            .Select(g => new { 
+                                                                location = g.Key.InfoContent,
+                                                                count = g.Count(),
+                                                                personCount=g.Sum(a=> a.PersonUID.Count())
+                                                                })
+                                            .OrderByDescending(i => i.count)
+                                            .ToListAsync();
+            if (a != null)
+            {
+                var b = a;
             }
 
         }

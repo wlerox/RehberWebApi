@@ -39,6 +39,11 @@ namespace Rehber.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnect"),
                 providerOptions => providerOptions.EnableRetryOnFailure());
             });
+            //Redis connection
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = Configuration.GetConnectionString("RedisConnect");
+            });
             //Add mapper
             services.AddAutoMapper(typeof(AppProfile));
 
