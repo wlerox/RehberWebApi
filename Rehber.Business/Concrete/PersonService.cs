@@ -165,5 +165,11 @@ namespace Rehber.Business.Concrete
             var person = JsonConvert.DeserializeObject<PersonGetDto>(strPerson);
             return person;
         }
+
+        public async Task<List<ReportDto>> GetReports()
+        {
+            var reports = await _personRepository.GetReports();
+            return reports;
+        }
     }
 }

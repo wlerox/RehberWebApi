@@ -129,29 +129,25 @@ namespace Rehber.DataAccess.Concrete
             else
             {
                 //var a = await _dbContext.Persons.Include(person => person.ContactInfos.Where(c =>c.InfoTypeID == 3).GroupBy(g => g.InfoContent).ToList());
-
+               
                 return false;
             }
 
         }
 
-        public async Task PersonStatistics()
+        public async Task<List<ReportDto>> GetReports()
         {
             
-            var a = await _dbContext.ContactInfos.Where(t => t.InfoTypeID == 1 && t.InfoTypeID==3 )
+            var reports = await _dbContext.ContactInfos.Where(t => t.InfoTypeID==3 )
                                             .GroupBy(p => new { p.InfoContent })
-                                            .Select(g => new { 
-                                                                location = g.Key.InfoContent,
-                                                                count = g.Count(),
-                                                                personCount=g.Sum(a=> a.PersonUID.Count())
+                                            .Select(g => new ReportDto { 
+                                                                Location = g.Key.InfoContent,
+                                                                Count = g.Count(),
+                                                                PersonCount=g.Count()
                                                                 })
-                                            .OrderByDescending(i => i.count)
+                                            .OrderByDescending(i => i.Count)
                                             .ToListAsync();
-            if (a != null)
-            {
-                var b = a;
-            }
-
+            return reports;
         }
 
         public async Task<PersonDto> UpdatePerson(PersonDto person)

@@ -19,6 +19,6 @@ namespace Rehber.DataAccess.Abstract
         Task DeletePersonContact(string personUID,int contactId);
         Task<Boolean> IsPersonContact(string personUID, int contactId);
 
-        Task PersonStatistics();
+        Task<List<ReportDto>> GetReports();
     }
 }

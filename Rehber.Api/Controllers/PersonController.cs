@@ -93,5 +93,18 @@ namespace Rehber.API.Controllers
                 return NotFound();
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> GetReport()
+        {
+            var report = await _personService.GetReports();
+            if (report != null)
+            {
+                return Ok(report);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
