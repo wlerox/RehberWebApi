@@ -14,7 +14,9 @@ using Rehber.DataAccess.Concrete;
 using Rehber.DataAccess.Mapper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Rehber.Api
@@ -56,6 +58,9 @@ namespace Rehber.Api
                     Title = "Telefon Rehber Api",
                     Version = "v1"
                 });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                x.IncludeXmlComments(xmlPath);
 
             });
 

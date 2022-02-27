@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rehber.API</name>
+    </assembly>
+    <members>
+        <member name="M:Rehber.API.Controllers.PersonController.CreateNewPerson(Rehber.Entities.DtoModel.PersonSetDto)">
+            <summary>
+            This method is create new person 
+            </summary>
+            <param name="person"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

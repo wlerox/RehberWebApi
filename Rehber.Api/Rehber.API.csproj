@@ -6,6 +6,10 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\wlerox\source\repos\RehberWebApi\Rehber.Api\Rehber.API.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Rehber.Business\Rehber.Business.csproj" />
     <ProjectReference Include="..\Rehber.DataAccess\Rehber.DataAccess.csproj" />

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rehber.API", "Rehber.Api\Rehber.API.csproj", "{E793A20A-9B39-4152-8AE3-A71EFDC03986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rehber.API", "Rehber.Api\Rehber.API.csproj", "{E793A20A-9B39-4152-8AE3-A71EFDC03986}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rehber.Entities", "Rehber.Entities\Rehber.Entities.csproj", "{23FD9894-9644-4E81-A204-AEADFD2457B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rehber.Entities", "Rehber.Entities\Rehber.Entities.csproj", "{23FD9894-9644-4E81-A204-AEADFD2457B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rehber.DataAccess", "Rehber.DataAccess\Rehber.DataAccess.csproj", "{BD4A7585-405E-4E25-A961-CEAA86A5FFC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rehber.DataAccess", "Rehber.DataAccess\Rehber.DataAccess.csproj", "{BD4A7585-405E-4E25-A961-CEAA86A5FFC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rehber.Business", "Rehber.Business\Rehber.Business.csproj", "{12AFD9EE-40D6-45F5-A7A2-FC3A8AA69B08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rehber.Business", "Rehber.Business\Rehber.Business.csproj", "{12AFD9EE-40D6-45F5-A7A2-FC3A8AA69B08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
