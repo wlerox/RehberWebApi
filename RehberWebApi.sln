@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rehber.DataAccess", "Rehber
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rehber.Business", "Rehber.Business\Rehber.Business.csproj", "{12AFD9EE-40D6-45F5-A7A2-FC3A8AA69B08}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{35CCBCBD-FB99-45C3-9890-F1CDBB10CCCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{12AFD9EE-40D6-45F5-A7A2-FC3A8AA69B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12AFD9EE-40D6-45F5-A7A2-FC3A8AA69B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12AFD9EE-40D6-45F5-A7A2-FC3A8AA69B08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CCBCBD-FB99-45C3-9890-F1CDBB10CCCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CCBCBD-FB99-45C3-9890-F1CDBB10CCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CCBCBD-FB99-45C3-9890-F1CDBB10CCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CCBCBD-FB99-45C3-9890-F1CDBB10CCCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

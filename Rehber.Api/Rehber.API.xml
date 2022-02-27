@@ -6,9 +6,57 @@
     <members>
         <member name="M:Rehber.API.Controllers.PersonController.CreateNewPerson(Rehber.Entities.DtoModel.PersonSetDto)">
             <summary>
-            This method is create new person 
+            This method is create a new person 
             </summary>
             <param name="person"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rehber.API.Controllers.PersonController.AddPersonContact(Rehber.Entities.DtoModel.ContactInfoSetDto)">
+            <summary>
+            This method is use to add contact information to a person
+            </summary>
+            <param name="personContact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rehber.API.Controllers.PersonController.UpdatePerson(Rehber.Entities.DtoModel.PersonDto)">
+            <summary>
+            update a person
+            </summary>
+            <param name="person"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rehber.API.Controllers.PersonController.DeletePerson(System.String)">
+            <summary>
+            delete a person 
+            </summary>
+            <param name="personUID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rehber.API.Controllers.PersonController.DeleteContact(System.String,System.Int32)">
+            <summary>
+            delete person contact information 
+            </summary>
+            <param name="personUID"></param>
+            <param name="contactId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rehber.API.Controllers.PersonController.GetAllPerson">
+            <summary>
+            This is Get all person
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rehber.API.Controllers.PersonController.GetPersonWithDetail(System.String)">
+            <summary>
+            Get a person information with contact info
+            </summary>
+            <param name="personUID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rehber.API.Controllers.PersonController.GetReport">
+            <summary>
+            Report method
+            </summary>
             <returns></returns>
         </member>
     </members>

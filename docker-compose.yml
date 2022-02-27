@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  redis_cache:
+    image: redis
+    container_name: redisCache
+    ports:
+      - "6379:6379"
+
+  sqlserver_Db:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      - SA_PASSWORD=a123456!
+      - ACCEPT_EULA=Y
+    container_name: sqlServer
+    
+    ports:
+      -  "1433:1433"
+
+  userinfo.api:
+    image: ${DOCKER_REGISTRY-}rehberapi
+    build:
+      context: .
+      dockerfile: Rehber.Api/Dockerfile
+    container_name: RehberAPI
+    restart: on-failure
+    ports:
+      -  "5050:80"
+    
+    depends_on: 
+      - "redis_cache"
+      - "sqlserver_Db"

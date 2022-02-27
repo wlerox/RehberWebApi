@@ -10,6 +10,7 @@ WORKDIR /src
 COPY ["Rehber.Api/Rehber.API.csproj", "Rehber.Api/"]
 COPY ["Rehber.DataAccess/Rehber.DataAccess.csproj", "Rehber.DataAccess/"]
 COPY ["Rehber.Entities/Rehber.Entities.csproj", "Rehber.Entities/"]
+COPY ["Rehber.Business/Rehber.Business.csproj", "Rehber.Business/"]
 RUN dotnet restore "Rehber.Api/Rehber.API.csproj"
 COPY . .
 WORKDIR "/src/Rehber.Api"
