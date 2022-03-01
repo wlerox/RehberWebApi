@@ -1,5 +1,5 @@
 Projede kullanılanlar
-  * Proje SOA yaklaşımı benimsenmiştir.
+  * Projede SOA yaklaşımı benimsenmiştir.
   * .Net Core 3.1
   * Entity Framework Core Code-first
   * Dependency Injection
